@@ -1,20 +1,21 @@
-const CACHE_NAME = "app-v1";
-const ASSETS = ["./", "./index.html", "./style.css", "./app.js", "./icon.png"];
+const CACHE_NAME = 'pro-app-v2'; // Ganti versi
+const ASSETS = [
+    './',
+    './index.html',
+    './style.css',
+    './app.js',
+    './icon.png',
+    'https://unpkg.com/feather-icons' // Cache library ikon
+];
 
-// Install Service Worker
-self.addEventListener("install", (e) => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS);
-    }),
-  );
+self.addEventListener('install', (e) => {
+    e.waitUntil(
+        caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    );
 });
 
-// Fetch Assets
-self.addEventListener("fetch", (e) => {
-  e.respondWith(
-    caches.match(e.request).then((response) => {
-      return response || fetch(e.request);
-    }),
-  );
+self.addEventListener('fetch', (e) => {
+    e.respondWith(
+        caches.match(e.request).then((res) => res || fetch(e.request))
+    );
 });
