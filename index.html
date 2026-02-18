@@ -1,30 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aplikasi Simpel</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#4A90E2" />
-    <link rel="apple-touch-icon" href="icon.png" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pro App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+
     <header>
-      <h1>Halo, Desainer!</h1>
+        <div class="header-content">
+            <h1>Dashboard</h1>
+            <button id="theme-toggle" aria-label="Ganti Tema">
+                <i data-feather="moon"></i>
+            </button>
+        </div>
     </header>
 
-    <main>
-      <div class="card">
-        <h2>Selamat Datang</h2>
-        <p>
-          Ini adalah website PWA sederhana. Anda bisa menginstallnya ke home
-          screen Android melalui menu browser.
-        </p>
-        <button onclick="alert('Tombol berfungsi!')">Tes Fungsi</button>
-      </div>
+    <main id="main-content">
+        
+        <section id="home" class="page active">
+            <div class="card welcome-card">
+                <h2>Halo, Creator!</h2>
+                <p>Selamat datang di aplikasi PWA modern Anda.</p>
+                <div id="install-container" style="display: none;">
+                    <button id="install-btn" class="btn-primary">Install Aplikasi</button>
+                </div>
+            </div>
+
+            <h3>Project Terbaru</h3>
+            <div class="scroll-row">
+                <div class="project-card"></div>
+                <div class="project-card"></div>
+                <div class="project-card"></div>
+            </div>
+        </section>
+
+        <section id="search" class="page">
+            <h2>Eksplorasi</h2>
+            <input type="text" placeholder="Cari inspirasi..." class="search-bar">
+            <div class="grid-gallery">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+            </div>
+        </section>
+
+        <section id="profile" class="page">
+            <div class="profile-header">
+                <div class="avatar"></div>
+                <h2>Desainer Senior</h2>
+                <p>Jakarta, Indonesia</p>
+            </div>
+            <div class="card">
+                <h3>Settings</h3>
+                <p>Versi App: 2.0 (Beta)</p>
+            </div>
+        </section>
+
     </main>
 
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-target="home">
+            <i data-feather="home"></i>
+        </a>
+        <a href="#" class="nav-item" data-target="search">
+            <i data-feather="search"></i>
+        </a>
+        <a href="#" class="nav-item" data-target="profile">
+            <i data-feather="user"></i>
+        </a>
+    </nav>
+
     <script src="app.js"></script>
-  </body>
+    <script>
+        feather.replace(); // Render icons
+    </script>
+</body>
 </html>
