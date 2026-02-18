@@ -1,48 +1,124 @@
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #1a1a1a;
+    --card-bg: #ffffff;
+    --primary: #2563eb;
+    --nav-bg: rgba(255, 255, 255, 0.85);
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --nav-bg: rgba(30, 30, 30, 0.85);
+    --shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
 body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding-bottom: 100px; /* Space for nav */
+    transition: background 0.3s ease;
 }
 
+/* Header */
 header {
-  background-color: #4a90e2;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg-color); /* Agar tidak transparan saat scroll */
 }
 
-main {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
+/* Pages Logic */
+.page {
+    display: none;
+    padding: 0 20px;
+    animation: fadeIn 0.4s ease;
+}
+.page.active { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
+/* Cards */
 .card {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  width: 100%;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
 }
 
-button {
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 15px;
+/* Floating Navbar (The Advanced Part) */
+.bottom-nav {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 400px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px); /* Efek Kaca Buram */
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 100;
 }
 
-button:active {
-  background-color: #357abd;
+.nav-item {
+    color: #9ca3af;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
 }
+
+.nav-item.active {
+    color: var(--primary);
+    background: rgba(37, 99, 235, 0.1);
+    transform: translateY(-5px);
+}
+
+/* Components UI */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    background: var(--card-bg);
+    color: var(--text-color);
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* Dummy Content Styles */
+.scroll-row { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; }
+.project-card { min-width: 120px; height: 160px; background: #ddd; border-radius: 15px; }
+.grid-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.grid-item { height: 120px; background: #ddd; border-radius: 15px; }
+.avatar { width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin-bottom: 10px; }
